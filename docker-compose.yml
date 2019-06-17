@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-web
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: guestbook
+      DB_USER: guestbook
+      DB_PASS: password
+    depends_on:
+      - db
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - "80:80"
+  
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: guestbook
+      MYSQL_USER: guestbook
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data: 
