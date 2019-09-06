@@ -2,7 +2,6 @@ version: "3"
 services:
   web:
     build: "./web"
-    image: web
     environment:
       DB_HOST: db
       DB_PORT: 3306
@@ -16,7 +15,6 @@ services:
   
   db:
     build: "./db"
-    image: db
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: guestbook
