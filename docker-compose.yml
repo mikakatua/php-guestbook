@@ -12,6 +12,8 @@ services:
       - db
     ports:
       - "80:80"
+#    env_file:
+#      -  ./var.env
   
   db:
     build: "./db"

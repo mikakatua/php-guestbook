@@ -1,3 +1,12 @@
+<?php
+require('functions.php');
+
+$page_header = getenv('PAGE_HEADER') ?: 'Test Sign Guestbook';
+$colors = [
+  'form' => getenv('COLOR_FORM') ?: 'LightGrey',
+  'post' => getenv('COLOR_POST') ?: 'LightBlue',
+];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +20,14 @@ body {
 <body>
 <table width="400" border="0" align="center" cellpadding="3" cellspacing="0">
 <tr>
-<td><strong>Test Sign Guestbook </strong></td>
+<td><strong><? echo $page_header; ?></strong></td>
 </tr>
 </table>
-<table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+<table width="400" border="0" align="center" cellpadding="0" cellspacing="1" >
 <tr>
 <form id="form1" name="form1" method="post" action="/add.php">
 <td>
-<table width="400" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+<table width="400" border="0" cellpadding="3" cellspacing="1" bgcolor="<? echo $colors['form']; ?>">
 <tr>
 <td width="117">Name</td>
 <td width="14">:</td>
@@ -46,7 +55,11 @@ body {
 </table>
 <table width="400" border="0" align="center" cellpadding="3" cellspacing="0">
 <tr>
-<td><strong><a href="/view.php">View Guestbook</a> </strong></td>
+<td>
+<?php
+include('view.php')
+?>
+</td>
 </tr>
 </table>
 </body>
